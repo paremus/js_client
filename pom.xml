@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.paremus.ui</groupId>
+    <artifactId>js_client</artifactId>
+    <version>1.0.0</version>
+    <packaging>pom</packaging>
+
+    <inceptionYear>2018</inceptionYear>
+    
+    <name>The Paremus UI Javascript client</name>
+    <description>A skeleton Javascript UI for use with com.paremus.ui Components</description>
+    <url>https://github.com/paremus/js_client</url>
+    
+    <scm>
+        <connection>scm:git:https://github.com/paremus/js_client.git</connection>
+        <developerConnection>scm:git:https://github.com/paremus/js_client.git</developerConnection>
+        <url>https://github.com/paremus/js_client</url>
+    </scm>
+
+    <licenses>
+        <license>
+            <name>Fair Source License, version 0.9</name>
+            <url>https://fair.io/#license</url>
+            <comments>As users do not typically interact directly with Paremus components
+                the User limit of the Fair Source License is interpreted by Paremus 
+                as applying to the number of running processes.</comments>
+        </license>
+    </licenses>
+    
+    <developers>  
+        <developer>
+            <id>tward</id>
+            <name>Tim Ward</name>
+            <email>tim.ward@paremus.com</email>
+            <organization>Paremus</organization>
+            <organizationUrl>https://paremus.com</organizationUrl>
+        </developer>
+        <developer>
+            <id>derek</id>
+            <name>Derek Baum</name>
+            <email>derek.baum@paremus.com</email>
+            <organization>Paremus</organization>
+            <organizationUrl>https://paremus.com</organizationUrl>
+        </developer>
+    </developers>
+
+    <build>
+      <plugins>
+        <plugin>
+          <!--
+            == build javascript
+            == assumes yarn and node are already installed
+            -->
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>exec-maven-plugin</artifactId>
+          <version>1.6.0</version>
+          <executions>
+            <execution>
+              <id>build client</id>
+              <phase>compile</phase>
+              <goals>
+                <goal>exec</goal>
+              </goals>
+              <configuration>
+                <executable>sh</executable>
+                <arguments>
+                  <argument>-xc</argument>
+                  <argument>yarn install; yarn build</argument>
+                </arguments>
+              </configuration>
+            </execution>
+          </executions>
+        </plugin>
+
+        <plugin>
+          <artifactId>maven-assembly-plugin</artifactId>
+          <version>3.2.0</version>
+          <configuration>
+            <descriptors>
+              <descriptor>assembly.xml</descriptor>
+            </descriptors>
+          </configuration>
+          <executions>
+            <execution>
+              <id>make-assembly</id>
+              <phase>package</phase>
+              <goals>
+                <goal>single</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
+
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-deploy-plugin</artifactId>
+            <version>3.0.0-M1</version>
+        </plugin>
+
+      </plugins>
+    </build>
+
+</project>

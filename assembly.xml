@@ -1,0 +1,13 @@
+<assembly>
+  <id>build</id>
+  <formats>
+    <format>tar.gz</format>
+  </formats>
+  <includeBaseDirectory>false</includeBaseDirectory>
+  <fileSets>
+    <fileSet>
+      <directory>build</directory>
+      <outputDirectory>build</outputDirectory>
+    </fileSet>
+  </fileSets>
+</assembly>
